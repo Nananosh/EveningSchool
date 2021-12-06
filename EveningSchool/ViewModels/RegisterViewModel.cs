@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace BlueLife.ViewModels
+namespace EveningSchool.ViewModels
 {
     public class RegisterViewModel
     {
@@ -23,5 +24,21 @@ namespace BlueLife.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Repeat the password")]
         public string PasswordConfirm { get; set; }
+        
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        
+        [Required]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
+        
+        [Required]
+        [Display(Name = "LastName")]
+        public string Lastname { get; set; }
+        
+        [Required]
+        [Display(Name = "Telephone")]
+        public string Telephone { get; set; }
     }
 }

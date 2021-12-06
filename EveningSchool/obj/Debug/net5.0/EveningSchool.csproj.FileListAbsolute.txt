@@ -77,3 +77,5 @@ C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Evenin
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\ref\EveningSchool.dll
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\EveningSchool.pdb
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\EveningSchool.genruntimeconfig.cache
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
