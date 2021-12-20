@@ -2,7 +2,7 @@
 using EveningSchool.Migrations;
 using EveningSchool.Models;
 using EveningSchool.ViewModels;
-using ItransitionCourseProject.ViewModels.Account;
+using EveningSchool.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

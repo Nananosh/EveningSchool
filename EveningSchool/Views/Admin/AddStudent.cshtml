@@ -1,0 +1,56 @@
+﻿@model EveningSchool.ViewModels.Admin.StudentViewModel
+
+<form class="form-group" method="post" asp-controller="Admin" asp-action="AddStudent">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="Name" placeholder="Введите имя ученика">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="Surname" placeholder="Введите фамилия ученика">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Отчество</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="Lastname" placeholder="Введите отчество ученика">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Телефон</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="Telephone" placeholder="Введите телефон ученика">
+        <span asp-validation-for="Telephone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Адрес проживания</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="Address" placeholder="Введите адрес ученика">
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Номер класса</label><br/>
+        <input id="classes" class="form-control shadow-sm bg-white rounded" asp-for="ClassId" style="width: 100%;">
+        <span asp-validation-for="ClassId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block shadow-sm rounded">Добавить</button>
+    </div>
+</form>
+
+<script>
+      $(document).ready(function() {
+          $("#classes").kendoDropDownList({
+                        dataTextField: "className",
+                        dataValueField: "id",
+                        optionLabel: "Выберите номер класса...",
+                        heigth: 310,
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: "/Admin/GetAllClasses"
+                                }
+                            }
+                        }
+                    });
+      });
+    </script>

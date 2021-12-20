@@ -1,0 +1,13 @@
+﻿@model EveningSchool.ViewModels.Admin.ClassViewModel
+
+<form class="form-group" method="post" asp-controller="Admin" asp-action="AddClass">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label>Название класса</label>
+        <input class="form-control shadow-sm bg-white rounded" asp-for="ClassName" placeholder="Введите название класса">
+        <span asp-validation-for="ClassName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block shadow-sm rounded">Добавить</button>
+    </div>
+</form>
