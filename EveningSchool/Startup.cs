@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EveningSchool.Business.Interfaces;
+using EveningSchool.Business.Services;
 using EveningSchool.Migrations;
 using EveningSchool.Models;
 using EveningSchool.ViewModels.Mappings;
@@ -28,8 +30,16 @@ namespace EveningSchool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<IScheduleService, ScheduleService>();
+            
             services.AddAutoMapper(typeof(UserMappingProfile));
             services.AddControllersWithViews();
+            
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             
             services.AddDbContext<ApplicationContext>(
                 options =>
@@ -68,6 +78,8 @@ namespace EveningSchool
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseUserDestroyer();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

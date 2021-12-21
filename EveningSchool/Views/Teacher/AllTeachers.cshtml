@@ -1,0 +1,24 @@
+﻿@model List<Teacher>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+      @foreach (var teacher in Model)
+      {
+          <img src="@teacher.User.UserImage" alt=""/>
+          <h2>@teacher.Surname</h2>
+          <h2>@teacher.Name</h2>
+          <h2>@teacher.Lastname</h2>
+          <h2>@teacher.Telephone</h2>
+      }
+</div>
+</body>
+</html>

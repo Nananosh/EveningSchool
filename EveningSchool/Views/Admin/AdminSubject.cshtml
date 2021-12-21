@@ -1,0 +1,69 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllSubjects", "Schedule")",
+                        create: {
+                            url: "@Url.Action("AddSubject","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        update: {
+                            url: "@Url.Action("EditSubject","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteSubject","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "Id",
+                            fields: {
+                                Id: { from: "id", type: "number" },
+                                SubjectName: { from: "subjectName", type: "string" } 
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                editable: "popup",
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                toolbar: [
+                    {name: "create"}
+                ],
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false
+                    },
+                    {
+                        field: "SubjectName",
+                        title: "Название предмета"
+                    },
+                    {
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"
+                    }
+                ]
+            });
+        });
+    </script>
+</div>
+</body>

@@ -1,0 +1,269 @@
+﻿<div id="example">
+    <div id="scheduler"></div>
+</div>
+<script id="event-template" type="text/x-kendo-template">
+    <div class="movie-template">
+      <p>#: title #</p>
+      </div>
+    </script>
+<script id="customEditorTemplate" type="text/x-kendo-template">
+    <div class="k-edit-label">
+        <label for="start">Start</label>
+      </div>
+    <div data-container-for="start" class="k-edit-field">
+        <input type="text"
+               data-role="datetimepicker"
+               data-interval="15"
+               data-type="date"
+               data-bind="value:start,invisible:isAllDay"
+               name="start"/>
+        <input type="text" data-type="date" data-role="datepicker" data-bind="value:start,visible:isAllDay" name="start" />
+        <span data-bind="text: startTimezone"></span>
+        <span data-for="start" class="k-invalid-msg" style="display: none;"></span>
+      </div>
+    <div class="k-edit-label"><label for="end">End</label></div>
+    <div data-container-for="end" class="k-edit-field">
+        <input type="text" data-type="date" data-role="datetimepicker" data-bind="value:end,invisible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+        <input type="text" data-type="date" data-role="datepicker" data-bind="value:end,visible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+        <span data-bind="text: endTimezone"></span>
+        <span data-bind="text: startTimezone, invisible: endTimezone"></span>
+        <span data-for="end" class="k-invalid-msg" style="display: none;"></span>
+      </div>
+    <div class="k-edit-label"><label for="recurrenceRule">Repeat</label></div>
+    <div data-container-for="recurrenceRule" class="k-edit-field">
+        <div data-bind="value:recurrenceRule" name="recurrenceRule" data-role="recurrenceeditor"></div>
+      </div>
+      <div class="k-edit-label"><label for="classId">Класс</label></div>
+          <div class="k-edit-field">
+              <input id="class" style="width: 60%;" data-bind="value:classId"/>
+          </div>
+          <div class="k-edit-label"><label for="classId">Предмет</label></div>
+                    <div class="k-edit-field">
+                        <input id="subject" style="width: 60%;" data-bind="value:subjectId"/>
+                    </div>
+                    <div class="k-edit-label"><label for="classId">Кабинет</label></div>
+                                        <div class="k-edit-field">
+                                            <input id="cabinet" style="width: 60%;" data-bind="value:cabinetId"/>
+                                        </div>
+    </script>
+
+<script>
+$(function() {
+    $("#scheduler").kendoScheduler({
+        date: new Date("2021/12/17 07:00 AM"),
+        startTime: new Date("2021/12/17 07:00 AM"),
+        allDaySlot: false,
+        majorTimeHeaderTemplate: "",
+        timeSlot: false,
+        ShowTimeRuler: false,
+        majorTick: 1440, //set major tick to full day and leave the default startTime/endTime
+        minorTickCount: 1,
+        views: [
+            {
+                type: "day",
+                selected: true,
+            },
+            
+        ],
+        editable: {
+            template: $("#customEditorTemplate").html(),
+        },
+        edit: function(e) {
+            $("#class").kendoDropDownList({
+                dataTextField: "className",
+                dataValueField: "id",
+                optionLabel: "Выберите класс...",
+                height: 500,
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "@Url.Action("GetAllClasses", "Schedule")",
+                            dataType: "json",
+                            cache: false
+                        }
+                    }
+                }
+            });
+
+            $("#subject").kendoDropDownList({
+                dataTextField: "subjectName",
+                dataValueField: "id",
+                optionLabel: "Выберите предмет...",
+                height: 500,
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "@Url.Action("GetAllSubjects", "Schedule")",
+                            dataType: "json",
+                            cache: false
+                        }
+                    }
+                }
+            })
+            $("#cabinet").kendoDropDownList({
+                dataTextField: "cabinetNumber",
+                dataValueField: "id",
+                optionLabel: "Выберите кабинет...",
+                height: 500,
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "@Url.Action("GetAllCabinets", "Schedule")",
+                            dataType: "json",
+                            cache: false
+                        }
+                    }
+                }
+            })
+        },
+        eventTemplate: $("#event-template").html(),
+        timezone: "Europe/Minsk",
+        dataSource: {
+            batch: true,
+            transport: {
+                read: {
+                    url: "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})",
+                    dataType: "json"
+                },
+                // update: {
+                //         url: function(options) {
+                //             AddTeacherLessons("@Url.Action("AddTeacherLessons", "Schedule")", options);
+                //         },
+                //         dataType: "jsonp"
+                //     },
+                create: {
+                    url: function(options) {
+                        AddTeacherLessons("@Url.Action("AddTeacherLessons", "Schedule")", options)
+                    }
+                },
+                destroy: {
+                    url: "",
+                    dataType: "jsonp"
+                },
+                parameterMap: function(options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return {
+                            models: kendo.stringify(options.models)
+                        };
+                    }
+                }
+            },
+            schema: {
+                model: {
+                    id: "lessonId",
+                    fields: {
+                        lessonId: {
+                            from: "id"
+                        },
+                        title: {
+                            defaultValue: "No title",
+                            validation: {
+                                required: true
+                            }
+                        },
+                        start: {
+                            type: "date",
+                            from: "dateStart"
+                        },
+                        end: {
+                            type: "date",
+                            from: "dateEnd"
+                        },
+                        recurrenceRule: {
+                            from: "recurrenceRule"
+                        },
+                        lessonNumber: {
+                            from: "lessonNumber",
+                        },
+                        teacherId: {
+                            type: "number",
+                            from: "teacherId",
+                            defaultValue: @ViewBag.Id
+                        },
+                        classId: {
+                            type: "number",
+                            from: "classId"
+                        },
+                        subjectId: {
+                            type: "number",
+                            from: "subjectId"
+                        },
+                        cabinetId: {
+                            type: "number",
+                            from: "cabinetId"
+                        }
+                    }
+                }
+            }
+        },
+        group: {
+            resources: ["LessonNumber"],
+            orientation: "vertical"
+        },
+        resources: [{
+            field: "lessonNumber",
+            name: "LessonNumber",
+            dataSource: [{
+                    text: "Урок 1",
+                    value: 1
+                },
+                {
+                    text: "Урок 2",
+                    value: 2
+                },
+                {
+                    text: "Урок 3",
+                    value: 3
+                },
+                {
+                    text: "Урок 4",
+                    value: 4
+                },
+                {
+                    text: "Урок 5",
+                    value: 5
+                },
+                {
+                    text: "Урок 6",
+                    value: 6
+                },
+                {
+                    text: "Урок 7",
+                    value: 7
+                },
+                {
+                    text: "Урок 8",
+                    value: 8
+                }
+            ],
+            title: "LessonNumber"
+        }]
+    });
+});
+
+function AddTeacherLessons(url, options) {
+    console.log(options.models[0])
+    let model = {
+        lessonNumber: options.models[0].lessonNumber,
+        classId: options.models[0].classId,
+        subjectId: options.models[0].subjectId,
+        cabinetId: options.models[0].cabinetId,
+        teacherId: options.models[0].teacherId,
+        dateStart: options.models[0].dateStart,
+        dateEnd: options.models[0].dateEnd,
+        recurrenceRule: options.models[0].recurrenceRule,
+        replacement: options.models[0].replacement
+    };
+    $.ajax({
+        url: '@Url.Action("AddTeacherLessons", "Schedule")',
+        contentType: "text/json",
+        type: 'POST',
+        data: JSON.stringify(model),
+        success: function(result) {
+            var scheduler = $("#scheduler").data("kendoScheduler");
+            scheduler.dataSource.read();
+            scheduler.refresh();
+        }
+    })
+} 
+</script> 

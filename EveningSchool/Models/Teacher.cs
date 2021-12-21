@@ -10,7 +10,7 @@ namespace EveningSchool.Models
         public string Surname { get; set; }
         public string Lastname { get; set; }
         public string Telephone { get; set; }
+        public string Category { get; set; }
         public List<Lesson> Lessons { get; set; }
-        public List<Student> Students { get; set; }
     }
 }

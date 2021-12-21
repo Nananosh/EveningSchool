@@ -63,7 +63,6 @@ C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Evenin
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\EveningSchool.TagHelpers.output.cache
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\EveningSchool.RazorCoreGenerate.cache
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -79,3 +78,14 @@ C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Evenin
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\EveningSchool.genruntimeconfig.cache
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Teacher\AllTeachers.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\TeacherLessons.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminPanel.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminTeacher.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminCabinet.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminClass.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminStudent.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminSubject.cshtml.g.cs

@@ -2,10 +2,11 @@
 using EveningSchool.Migrations;
 using EveningSchool.Models;
 using EveningSchool.ViewModels;
-using ItransitionCourseProject.ViewModels.Account;
+using EveningSchool.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EveningSchool.Controllers
 {
@@ -21,6 +22,12 @@ namespace EveningSchool.Controllers
             _database = context;
             _userManager = userManager;
             _signInManager = signInManager;
+        }
+        
+        public async Task<string> GetUserImage(string id)
+        {
+            var user = await _database.Users.SingleOrDefaultAsync(u => u.Id == id);
+            return user.UserImage;
         }
 
         [HttpGet]
