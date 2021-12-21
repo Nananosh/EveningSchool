@@ -17,6 +17,11 @@
                             url: "@Url.Action("EditCabinet","Admin")",
                             dataType: "json",
                             type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteCabinet","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
                         }
                     },
                     schema: {
@@ -51,7 +56,10 @@
                         title: "Номер кабинета"
                     },
                     {
-                        command: ["edit"]
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"
                     }
                 ]
             });

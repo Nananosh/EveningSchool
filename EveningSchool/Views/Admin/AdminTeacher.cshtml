@@ -12,6 +12,11 @@
                             url: "@Url.Action("EditTeacher","Admin")",
                             dataType: "json",
                             type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteTeacher","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
                         }
                     },
                     schema: {
@@ -63,7 +68,10 @@
                         title: "Категория"
                     },
                     {
-                        command:["edit"]
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"
                     }
                 ]
             });

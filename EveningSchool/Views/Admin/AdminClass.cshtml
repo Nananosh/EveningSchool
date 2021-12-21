@@ -7,10 +7,26 @@
             $("#grid").kendoGrid({
                 dataSource: {
                     transport: {
-                        read: "@Url.Action("GetAllClasses", "Schedule")"
+                        read: "@Url.Action("GetAllClasses", "Schedule")",
+                        update: {
+                            url: "@Url.Action("EditClass","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        create: {
+                            url: "@Url.Action("AddClass","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteClass","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
+                        }
                     },
                     schema: {
                         model: {
+                            id: "Id",
                             fields: {
                                 Id: { from: "id", type: "number" },
                                 ClassName: { from: "className", type: "string" }
@@ -23,9 +39,13 @@
                     serverSorting: true
                 },
                 height: 550,
+                editable: "popup",
                 // filterable: true,
                 // sortable: true,
                 pageable: true,
+                toolbar: [
+                    {name: "create"}
+                ],
                 columns: [
                     {
                         field:"Id",
@@ -35,6 +55,12 @@
                         field: "ClassName",
                         title: "Название класса"
                     },
+                    {
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"  
+                    }
                 ]
             });
         });

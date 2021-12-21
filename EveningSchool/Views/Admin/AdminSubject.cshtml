@@ -7,10 +7,26 @@
             $("#grid").kendoGrid({
                 dataSource: {
                     transport: {
-                        read: "@Url.Action("GetAllSubjects", "Schedule")"
+                        read: "@Url.Action("GetAllSubjects", "Schedule")",
+                        create: {
+                            url: "@Url.Action("AddSubject","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        update: {
+                            url: "@Url.Action("EditSubject","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteSubject","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
+                        }
                     },
                     schema: {
                         model: {
+                            id: "Id",
                             fields: {
                                 Id: { from: "id", type: "number" },
                                 SubjectName: { from: "subjectName", type: "string" } 
@@ -23,9 +39,13 @@
                     serverSorting: true
                 },
                 height: 550,
+                editable: "popup",
                 // filterable: true,
                 // sortable: true,
                 pageable: true,
+                toolbar: [
+                    {name: "create"}
+                ],
                 columns: [
                     {
                         field:"Id",
@@ -34,6 +54,12 @@
                     {
                         field: "SubjectName",
                         title: "Название предмета"
+                    },
+                    {
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"
                     }
                 ]
             });

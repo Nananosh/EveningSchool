@@ -53,28 +53,18 @@ namespace EveningSchool.Controllers
             return View();
         }
 
-        public IActionResult AddClass()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult AddClass(ClassViewModel model)
         {
-            adminService.AddClass(mapper.Map<Class>(model));
-            return RedirectToAction();
-        }
-
-        public IActionResult AddSubject()
-        {
-            return View();
+            var cClass = adminService.AddClass(mapper.Map<Class>(model));
+            return Json(mapper.Map<ClassViewModel>(cClass));
         }
 
         [HttpPost]
         public IActionResult AddSubject(SubjectViewModel model)
         {
-            adminService.AddSubject(mapper.Map<Subject>(model));
-            return RedirectToAction();
+            var subject = adminService.AddSubject(mapper.Map<Subject>(model));
+            return Json(mapper.Map<SubjectViewModel>(subject));
         }
 
         [HttpPost]
@@ -110,6 +100,51 @@ namespace EveningSchool.Controllers
         {
             var cabinet = adminService.EditCabinet(mapper.Map<Cabinet>(model));
             return Json(mapper.Map<CabinetViewModel>(cabinet));
+        }
+
+        [HttpPost]
+        public IActionResult EditClass(ClassViewModel model)
+        {
+            var cClass = adminService.EditClass(mapper.Map<Class>(model));
+            return Json(mapper.Map<ClassViewModel>(cClass));
+        }
+
+        [HttpPost]
+        public IActionResult EditSubject(SubjectViewModel model)
+        {
+            var subject = adminService.EditSubject(mapper.Map<Subject>(model));
+
+            return Json(mapper.Map<SubjectViewModel>(subject));
+        }
+
+        [HttpDelete]
+        public void DeleteStudent(StudentViewModel model)
+        {
+            adminService.DeleteStudent(mapper.Map<Student>(model));
+        }
+
+        [HttpDelete]
+        public void DeleteClass(ClassViewModel model)
+        {
+            adminService.DeleteClass(mapper.Map<Class>(model));
+        }
+
+        [HttpDelete]
+        public void DeleteSubject(SubjectViewModel model)
+        {
+            adminService.DeleteSubject(mapper.Map<Subject>(model));
+        }
+        
+        [HttpDelete]
+        public void DeleteCabinet(CabinetViewModel model)
+        {
+            adminService.DeleteCabinet(mapper.Map<Cabinet>(model));
+        }
+        
+        [HttpDelete]
+        public void DeleteTeacher(TeacherViewModel model)
+        {
+            adminService.DeleteTeacher(mapper.Map<Teacher>(model));
         }
     }
 }

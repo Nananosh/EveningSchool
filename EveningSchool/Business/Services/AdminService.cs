@@ -20,25 +20,31 @@ namespace EveningSchool.Business.Services
             this.db = db;
         }
 
-        public void AddClass(Class cClass)
+        public Class AddClass(Class cClass)
         {
             db.Classes.Add(cClass);
             db.SaveChanges();
+            var addedClass = db.Classes.FirstOrDefault(x => x.Id == cClass.Id);
+
+            return addedClass;
         }
 
-        public void AddSubject(Subject subject)
+        public Subject AddSubject(Subject subject)
         {
             db.Subjects.Add(subject);
             db.SaveChanges();
+            var addedSubject = db.Subjects.FirstOrDefault(x => x.Id == subject.Id);
+
+            return addedSubject;
         }
 
         public Cabinet AddCabinet(Cabinet cabinet)
         {
             db.Cabinets.Add(cabinet);
             db.SaveChanges();
-            var addCabinet = db.Cabinets.FirstOrDefault(x => x.Id == cabinet.Id);
+            var addedCabinet = db.Cabinets.FirstOrDefault(x => x.Id == cabinet.Id);
 
-            return addCabinet;
+            return addedCabinet;
         }
 
         public Student AddStudent(Student student)
@@ -99,6 +105,71 @@ namespace EveningSchool.Business.Services
             var editedCabinet = db.Cabinets.FirstOrDefault(x => x.Id == editCabinet.Id);
 
             return editedCabinet;
+        }
+
+        public Class EditClass(Class cClass)
+        {
+            var editClass = db.Classes.FirstOrDefault(x => x.Id == cClass.Id);
+            if (editClass != null)
+            {
+                editClass.ClassName = cClass.ClassName;
+                db.SaveChanges();
+            }
+
+            var editedClass = db.Classes.FirstOrDefault(x => x.Id == editClass.Id);
+
+            return editedClass;
+        }
+
+        public Subject EditSubject(Subject subject)
+        {
+            var editSubject = db.Subjects.FirstOrDefault(x => x.Id == subject.Id);
+            if (editSubject != null)
+            {
+                editSubject.SubjectName = subject.SubjectName;
+                db.SaveChanges();
+            }
+
+            var editedSubject = db.Subjects.FirstOrDefault(x => x.Id == editSubject.Id);
+
+            return editedSubject;
+        }
+
+        public void DeleteStudent(Student student)
+        {
+            var deleteStudent = db.Students.FirstOrDefault(x => x.Id == student.Id);
+            if (deleteStudent != null) db.Students.Remove(deleteStudent);
+            db.SaveChanges();
+        }
+
+        public void DeleteClass(Class cClass)
+        {
+            var deleteClass = db.Classes.FirstOrDefault(x => x.Id == cClass.Id);
+            if (deleteClass != null) db.Classes.Remove(deleteClass);
+            db.SaveChanges();
+        }
+
+        public void DeleteSubject(Subject subject)
+        {
+            var deleteSubject = db.Subjects.FirstOrDefault(x => x.Id == subject.Id);
+            if (deleteSubject != null) db.Subjects.Remove(deleteSubject);
+            db.SaveChanges();
+        }
+
+        public void DeleteCabinet(Cabinet cabinet)
+        {
+            var deleteCabinet = db.Cabinets.FirstOrDefault(x => x.Id == cabinet.Id);
+            if (deleteCabinet != null) db.Cabinets.Remove(deleteCabinet);
+            db.SaveChanges();
+        }
+
+        public void DeleteTeacher(Teacher teacher)
+        {
+            var deleteTeacher = db.Teachers.Include(u => u.User).FirstOrDefault(x => x.Id == teacher.Id);
+            var deleteUser = db.Users.FirstOrDefault(x => x.Id == deleteTeacher.User.Id);
+            if (deleteTeacher != null) db.Teachers.Remove(deleteTeacher);
+            if (deleteUser != null) db.Users.Remove(deleteUser);
+            db.SaveChanges();
         }
     }
 }

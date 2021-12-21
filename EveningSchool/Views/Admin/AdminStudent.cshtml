@@ -18,7 +18,11 @@
                             dataType: "json",
                             type: "POST"  
                         },
-                        destroy: ""
+                        destroy: {
+                            url: "@Url.Action("DeleteStudent","Admin")",
+                            dataType: "json",
+                            type: "DELETE"
+                        }
                     },
                     schema: {
                         model: {
@@ -79,7 +83,10 @@
                         title: "Адрес"
                     },
                     {
-                        command: ["edit"]
+                        command: "edit", 
+                    },
+                    {
+                        command: "destroy"
                     }
                 ]
             });

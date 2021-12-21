@@ -78,6 +78,8 @@ namespace EveningSchool
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseUserDestroyer();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
