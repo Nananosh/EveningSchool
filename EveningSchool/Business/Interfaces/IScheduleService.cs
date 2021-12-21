@@ -10,6 +10,8 @@ namespace EveningSchool.Business.Interfaces
         public IEnumerable GetAllClasses();
         public IEnumerable GetAllSubjects();
         public IEnumerable GetAllCabinets();
+        public IEnumerable GetAllStudents();
+        public IEnumerable GetAllTeachers();
         public Lesson AddTeacherLessons(Lesson lesson);
     }
 }

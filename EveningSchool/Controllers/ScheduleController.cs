@@ -35,9 +35,9 @@ namespace EveningSchool.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTeacherLessons([FromBody] LessonViewModel models)
+        public IActionResult AddTeacherLessons([FromBody] LessonViewModel model)
         {
-            var lesson = scheduleService.AddTeacherLessons(mapper.Map<Lesson>(models));
+            var lesson = scheduleService.AddTeacherLessons(mapper.Map<Lesson>(model));
             return Json(mapper.Map<LessonViewModel>(lesson));
         }
 
@@ -57,6 +57,18 @@ namespace EveningSchool.Controllers
         {
             var cabinets = scheduleService.GetAllCabinets();
             return Json(mapper.Map<IEnumerable<CabinetViewModel>>(cabinets));
+        }
+        
+        public IActionResult GetAllTeachers()
+        {
+            var teachers = scheduleService.GetAllTeachers();
+            return Json(mapper.Map<IEnumerable<TeacherViewModel>>(teachers));
+        }
+
+        public IActionResult GetAllStudents()
+        {
+            var students = scheduleService.GetAllStudents();
+            return Json(mapper.Map<IEnumerable<StudentViewModel>>(students));
         }
     }
 }

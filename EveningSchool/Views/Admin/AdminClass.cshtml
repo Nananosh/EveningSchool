@@ -1,0 +1,43 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllClasses", "Schedule")"
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+                                Id: { from: "id", type: "number" },
+                                ClassName: { from: "className", type: "string" }
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false
+                    },
+                    {
+                        field: "ClassName",
+                        title: "Название класса"
+                    },
+                ]
+            });
+        });
+    </script>
+</div>
+</body>

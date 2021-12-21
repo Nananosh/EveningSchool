@@ -1,0 +1,65 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllCabinets", "Schedule")",
+                        create: {
+                            url: "@Url.Action("AddCabinet","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        update: {
+                            url: "@Url.Action("EditCabinet","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "Id",
+                            fields: {
+                                Id: { from: "id", type: "number" },
+                                CabinetNumber: { from: "cabinetNumber", type: "number" }
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                editable: "popup",
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                toolbar: [
+                    {name: "create"}
+                ],
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false
+                    },
+                    {
+                        field: "CabinetNumber",
+                        title: "Номер кабинета"
+                    },
+                    {
+                        command: ["edit"]
+                    }
+                ]
+            });
+        });
+    </script>
+</div>
+
+
+
+
+</body>

@@ -46,6 +46,20 @@ namespace EveningSchool.Business.Services
             var cabinets = db.Cabinets;
             return cabinets;
         }
+        
+        public IEnumerable GetAllStudents()
+        {
+            var students = db.Students
+                .Include(c => c.Class);
+            return students;
+        }
+        
+        public IEnumerable GetAllTeachers()
+        {
+            var teachers = db.Teachers;
+            return teachers;
+        }
+
 
         public Lesson AddTeacherLessons(Lesson lesson)
         {

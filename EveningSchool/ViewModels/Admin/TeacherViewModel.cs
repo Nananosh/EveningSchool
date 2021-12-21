@@ -7,7 +7,7 @@
         public string Surname { get; set; }
         public string Lastname { get; set; }
         public string Telephone { get; set; }
-
+        public string Category { get; set; }
         public string FullName => $"{Surname} {Name} {Lastname}";
     }
 }

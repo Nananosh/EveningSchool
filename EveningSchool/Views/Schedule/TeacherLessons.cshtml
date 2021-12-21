@@ -137,7 +137,7 @@ $(function() {
                     }
                 },
                 destroy: {
-                    url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
+                    url: "",
                     dataType: "jsonp"
                 },
                 parameterMap: function(options, operation) {
@@ -150,8 +150,11 @@ $(function() {
             },
             schema: {
                 model: {
-                    id: "id",
+                    id: "lessonId",
                     fields: {
+                        lessonId: {
+                            from: "id"
+                        },
                         title: {
                             defaultValue: "No title",
                             validation: {
@@ -239,6 +242,7 @@ $(function() {
 });
 
 function AddTeacherLessons(url, options) {
+    console.log(options.models[0])
     let model = {
         lessonNumber: options.models[0].lessonNumber,
         classId: options.models[0].classId,

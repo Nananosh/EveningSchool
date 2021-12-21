@@ -15,23 +15,53 @@ namespace EveningSchool.Controllers
         private readonly ApplicationContext db;
         private readonly IMapper mapper;
         private readonly IAdminService adminService;
-        
+
         public AdminController(ApplicationContext db, IMapper mapper, IAdminService adminService)
         {
             this.db = db;
             this.mapper = mapper;
             this.adminService = adminService;
         }
-        
+
+        public IActionResult AdminPanel()
+        {
+            return View();
+        }
+
+        public IActionResult AdminTeacher()
+        {
+            return View();
+        }
+
+        public IActionResult AdminCabinet()
+        {
+            return View();
+        }
+
+        public IActionResult AdminClass()
+        {
+            return View();
+        }
+
+        public IActionResult AdminStudent()
+        {
+            return View();
+        }
+
+        public IActionResult AdminSubject()
+        {
+            return View();
+        }
+
         public IActionResult AddClass()
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult AddClass(ClassViewModel model)
         {
-            adminService.AddClass(db,mapper.Map<Class>(model));
+            adminService.AddClass(mapper.Map<Class>(model));
             return RedirectToAction();
         }
 
@@ -39,49 +69,47 @@ namespace EveningSchool.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult AddSubject(SubjectViewModel model)
         {
-            adminService.AddSubject(db,mapper.Map<Subject>(model));
+            adminService.AddSubject(mapper.Map<Subject>(model));
             return RedirectToAction();
         }
-        
-        public IActionResult AddCabinet()
-        {
-            return View();
-        }
-        
+
         [HttpPost]
         public IActionResult AddCabinet(CabinetViewModel model)
         {
-            adminService.AddCabinet(db,mapper.Map<Cabinet>(model));
-            return RedirectToAction();
+            var cabinet = adminService.AddCabinet(mapper.Map<Cabinet>(model));
+            return Json(mapper.Map<CabinetViewModel>(cabinet));
         }
-        
-        public IActionResult GetAllTeachers()
-        {
-            var teachers = adminService.GetAllTeachers(db);
-            return Json(mapper.Map<IEnumerable<TeacherViewModel>>(teachers));
-        }
-        
-        public IActionResult GetAllClasses()
-        {
-            var classes = adminService.GetAllClasses(db);
-            return Json(mapper.Map<IEnumerable<ClassViewModel>>(classes));
-        }
-    
-        [HttpGet]
-        public IActionResult AddStudent()
-        {
-            return View();
-        }
-        
+
         [HttpPost]
         public IActionResult AddStudent(StudentViewModel model)
         {
-            adminService.AddStudent(db,mapper.Map<Student>(model));
-            return RedirectToAction();
+            var student = adminService.AddStudent(mapper.Map<Student>(model));
+            return Json(mapper.Map<StudentViewModel>(student));
+        }
+
+        [HttpPost]
+        public IActionResult EditStudent(StudentViewModel model)
+        {
+            var student = adminService.EditStudent(mapper.Map<Student>(model));
+            return Json(mapper.Map<StudentViewModel>(student));
+        }
+
+        [HttpPost]
+        public IActionResult EditTeacher(TeacherViewModel model)
+        {
+            var teacher = adminService.EditTeacher(mapper.Map<Teacher>(model));
+            return Json(mapper.Map<TeacherViewModel>(teacher));
+        }
+
+        [HttpPost]
+        public IActionResult EditCabinet(CabinetViewModel model)
+        {
+            var cabinet = adminService.EditCabinet(mapper.Map<Cabinet>(model));
+            return Json(mapper.Map<CabinetViewModel>(cabinet));
         }
     }
 }

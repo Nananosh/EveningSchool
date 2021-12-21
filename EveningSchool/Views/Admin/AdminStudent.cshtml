@@ -1,0 +1,108 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllStudents", "Schedule")",
+                        update: {
+                            url: "@Url.Action("EditStudent","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        create:{
+                            url: "@Url.Action("AddStudent","Admin")",
+                            dataType: "json",
+                            type: "POST"  
+                        },
+                        destroy: ""
+                    },
+                    schema: {
+                        model: {
+                            id: "Id",
+                            fields: {
+                                Id: { from: "id", type: "number" },
+                                Class: { from: "class"}, 
+                                ClassId: {from: "classId"},
+                                Name: { from: "name", type: "string" },
+                                Surname: { from: "surname", type: "string" },
+                                Lastname: { from: "lastname", type: "string" },
+                                Telephone: { from: "telephone", type: "string" },
+                                Address: { from: "address", type: "string" }
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                editable: "popup",
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                toolbar: [
+                    {name: "create"}
+                ],
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false
+                    },
+                    {
+                        field: "Name",
+                        title: "Имя"
+                    }, 
+                    {
+                        field: "Surname",
+                        title: "Фамилия"
+                    }, 
+                    {
+                        field: "Lastname",
+                        title: "Отчество"
+                    },
+                    {
+                        field: "Class.className",
+                        title: "Класс",
+                        editor: classEditor
+                    },
+                    {
+                        field: "Telephone",
+                        title: "Телефон"
+                    },
+                    {
+                        field: "Address",
+                        title: "Адрес"
+                    },
+                    {
+                        command: ["edit"]
+                    }
+                ]
+            });
+        });
+        
+        function classEditor(container, options) {
+            $('<input required name="ClassId">')
+                .appendTo(container)
+                .kendoDropDownList({
+                    dataTextField: "className",
+                    dataValueField: "id",
+                    height: 500,
+                    dataSource: {
+                        transport: {
+                            read: {
+                                url: "@Url.Action("GetAllClasses", "Schedule")",
+                                dataType: "json",
+                                cache: false
+                            }
+                        }
+                    }
+                });
+        }
+    </script>
+</div>
+</body>

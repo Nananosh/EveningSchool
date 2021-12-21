@@ -64,7 +64,8 @@ namespace EveningSchool.ViewModels.Mappings
                     opt => opt.MapFrom
                         (src => src.Address))
                 .ForMember(dest => dest.Class,
-                    opt => opt.Ignore()).ReverseMap();
+                    opt => opt.MapFrom
+                        (src => src.Class)).ReverseMap();
 
             CreateMap<TeacherViewModel, Teacher>()
                 .ForMember(dest => dest.Id,
@@ -82,6 +83,9 @@ namespace EveningSchool.ViewModels.Mappings
                 .ForMember(dest => dest.Telephone,
                     opt => opt.MapFrom
                         (src => src.Telephone))
+                .ForMember(dest => dest.Category,
+                    opt => opt.MapFrom
+                        (src => src.Category))
                 .ForMember(dest => dest.Lessons,
                     opt => opt.Ignore()).ReverseMap();
 

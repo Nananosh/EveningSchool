@@ -9,11 +9,12 @@ namespace EveningSchool.Business.Interfaces
 {
     public interface IAdminService
     {
-        public void AddClass(ApplicationContext db, Class cClass);
-        public void AddSubject(ApplicationContext db, Subject subject);
-        public void AddCabinet(ApplicationContext db, Cabinet cabinet);
-        public IEnumerable<Teacher> GetAllTeachers(ApplicationContext db);
-        public IEnumerable<Class> GetAllClasses(ApplicationContext db);
-        public void AddStudent(ApplicationContext db, Student student);
+        public void AddClass(Class cClass);
+        public void AddSubject(Subject subject);
+        public Cabinet AddCabinet(Cabinet cabinet);
+        public Student AddStudent(Student student);
+        public Student EditStudent(Student student);
+        public Teacher EditTeacher(Teacher teacher);
+        public Cabinet EditCabinet(Cabinet cabinet);
     }
 }

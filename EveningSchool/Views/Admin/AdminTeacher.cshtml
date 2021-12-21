@@ -1,0 +1,73 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllTeachers", "Schedule")",
+                        update:{
+                            url: "@Url.Action("EditTeacher","Admin")",
+                            dataType: "json",
+                            type: "POST"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "Id",
+                            fields: {
+                                Id: { from: "id", type: "number" },
+                                Name: { from: "name", type: "string" },
+                                Surname: { from: "surname", type: "string" },
+                                Lastname: { from: "lastname", type: "string" },
+                                Telephone: { from: "telephone", type: "string" },
+                                Category: { from: "category", type: "string" }
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                editable: "popup",
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false
+                    },
+                    {
+                        field: "Name",
+                        title: "Имя"
+                    }, 
+                    {
+                        field: "Surname",
+                        title: "Фамилия"
+                    }, 
+                    {
+                        field: "Lastname",
+                        title: "Отчество"
+                    },
+                    {
+                        field: "Telephone",
+                        title: "Телефон"
+                    },
+                    {
+                        field: "Category",
+                        title: "Категория"
+                    },
+                    {
+                        command:["edit"]
+                    }
+                ]
+            });
+        });
+    </script>
+</div>
+</body>
