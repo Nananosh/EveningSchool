@@ -28,8 +28,8 @@
                         model: {
                             id: "Id",
                             fields: {
-                                Id: { from: "id", type: "number" },
-                                ClassName: { from: "className", type: "string" }
+                                Id: { editable: false, from: "id", type: "number" },
+                                ClassName: { from: "className", type: "string", validation: {required: true} }
                             }
                         }
                     },
@@ -53,7 +53,7 @@
                     },
                     {
                         field: "ClassName",
-                        title: "Название класса"
+                        title: "Название класса",
                     },
                     {
                         command: "edit"

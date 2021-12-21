@@ -28,14 +28,14 @@
                         model: {
                             id: "Id",
                             fields: {
-                                Id: { from: "id", type: "number" },
-                                Class: { from: "class"}, 
-                                ClassId: {from: "classId"},
-                                Name: { from: "name", type: "string" },
-                                Surname: { from: "surname", type: "string" },
-                                Lastname: { from: "lastname", type: "string" },
-                                Telephone: { from: "telephone", type: "string" },
-                                Address: { from: "address", type: "string" }
+                                Id: { editable: false, from: "id", type: "number" },
+                                Class: { from: "class", validation: {required: true} }, 
+                                ClassId: {from: "classId", validation: {required: true} },
+                                Name: { from: "name", type: "string", validation: {required: true }},
+                                Surname: { from: "surname", type: "string", validation: {required: true }},
+                                Lastname: { from: "lastname", type: "string", validation: {required: true }},
+                                Telephone: { from: "telephone", type: "string", validation: {required: true }},
+                                Address: { from: "address", type: "string", validation: {required: true }}
                             }
                         }
                     },

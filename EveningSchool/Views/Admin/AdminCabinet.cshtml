@@ -28,8 +28,8 @@
                         model: {
                             id: "Id",
                             fields: {
-                                Id: { from: "id", type: "number" },
-                                CabinetNumber: { from: "cabinetNumber", type: "number" }
+                                Id: { editable: false, from: "id", type: "number" },
+                                CabinetNumber: { from: "cabinetNumber", type: "number", validation: {required: true} }
                             }
                         }
                     },
