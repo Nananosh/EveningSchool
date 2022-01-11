@@ -1,0 +1,140 @@
+﻿<div id="example">
+    <div id="scheduler"></div>
+</div>
+<script id="event-template" type="text/x-kendo-template">
+    <div class="movie-template">
+      <p>#: title #</p>
+      </div>
+    </script>
+<script>
+$(function() {
+    $("#scheduler").kendoScheduler({
+        footer: false,
+        date: new Date("@DateTime.Now.ToString("yyyy-M-d 07:00")"),
+        startTime: new Date("@DateTime.Now.ToString("yyyy-M-d 07:00")"),
+        allDaySlot: false,
+        majorTimeHeaderTemplate: "",
+        timeSlot: false,
+        ShowTimeRuler: false,
+        majorTick: 1440, //set major tick to full day and leave the default startTime/endTime
+        minorTickCount: 3,
+        views: [
+            {
+                type: "day",
+                selected: true,
+            },
+            { type: "workWeek"},
+        ],
+        editable: false,
+        eventTemplate: $("#event-template").html(),
+        timezone: "Europe/Minsk",
+        dataSource: {
+            batch: true,
+            transport: {
+                read: {
+                    url: "@Url.Action("GetLessonsByClassId", "Schedule", new {id = ViewBag.Id})",
+                    dataType: "json"
+                },
+            },
+            schema: {
+                model: {
+                    id: "id",
+                    fields: {
+                        id: {
+                            from: "id",
+                            type: "number"
+                        },
+                        title: {
+                            defaultValue: "No title",
+                            validation: {
+                                required: true
+                            }
+                        },
+                        start: {
+                            type: "date",
+                            from: "dateStart"
+                        },
+                        end: {
+                            type: "date",
+                            from: "dateEnd"
+                        },
+                        recurrenceRule: {
+                            from: "recurrenceRule"
+                        },
+                        lessonNumber: {
+                            from: "lessonNumber",
+                        },
+                        teacherId: {
+                            type: "number",
+                            from: "teacherId",
+                            defaultValue: @ViewBag.Id
+                        },
+                        classId: {
+                            type: "number",
+                            from: "classId"
+                        },
+                        subjectId: {
+                            type: "number",
+                            from: "subjectId"
+                        },
+                        cabinetId: {
+                            type: "number",
+                            from: "cabinetId"
+                        }
+                    }
+                }
+            }
+        },
+        group: {
+            resources: ["LessonNumber"],
+            orientation: "vertical"
+        },
+        resources: [{
+            field: "lessonNumber",
+            name: "LessonNumber",
+            dataSource: [{
+                    text: "Урок 1",
+                    value: 1
+                },
+                {
+                    text: "Урок 2",
+                    value: 2
+                },
+                {
+                    text: "Урок 3",
+                    value: 3
+                },
+                {
+                    text: "Урок 4",
+                    value: 4
+                },
+                {
+                    text: "Урок 5",
+                    value: 5
+                },
+                {
+                    text: "Урок 6",
+                    value: 6
+                },
+                {
+                    text: "Урок 7",
+                    value: 7
+                },
+                {
+                    text: "Урок 8",
+                    value: 8
+                }
+            ],
+            title: "LessonNumber"
+        }]
+    });
+});
+</script>
+<style>
+    .k-icon.k-i-arrow-60-down{
+        display: none;
+        }
+    .k-icon.k-i-arrow-60-up{
+        display: none;
+        }
+</style>

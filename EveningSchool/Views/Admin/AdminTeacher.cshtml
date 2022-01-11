@@ -72,10 +72,20 @@
                     },
                     {
                         command: "destroy"
+                    },
+                    {
+                        command: { text: "Изменить расписание", click: editLesson }
                     }
                 ]
             });
         });
+        function editLesson(e){
+           e.preventDefault();
+           var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+           var redirectUrl = "@Url.Action("EditTeacherSchedule","Schedule")" + `/?id=${dataItem.Id}`
+           console.log(redirectUrl)
+           window.location.replace(redirectUrl);
+        }
     </script>
 </div>
 </body>

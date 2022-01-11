@@ -22,10 +22,10 @@ namespace EveningSchool.ViewModels.Schedule
 
         public string Title
         {
-            get => @$"Класс - {Class.ClassName}, 
-                      Предмет - {Subject.SubjectName}, 
-                      Кабинет - {Cabinet.CabinetNumber},
-                      Преподаватель - {Teacher.Name}";
+            get => @$"{Class.ClassName}, 
+                      {Subject.SubjectName}, 
+                      каб №{Cabinet.CabinetNumber},
+                      {Teacher.Surname} {Teacher.Name} {Teacher.Lastname}";
         }
     }
 }

@@ -44,12 +44,18 @@
                 // sortable: true,
                 pageable: true,
                 toolbar: [
-                    {name: "create"}
+                    "create",
+                    "excel"
                 ],
+                excel: {
+                                fileName: "Cabinets.xlsx",
+                                allPages: true
+                            },
                 columns: [
                     {
                         field:"Id",
-                        filterable: false
+                        filterable: false,
+                        exportable: { pdf: true, excel: true }
                     },
                     {
                         field: "CabinetNumber",

@@ -21,8 +21,41 @@ namespace EveningSchool.Controllers
             this.scheduleService = scheduleService;
             this.mapper = mapper;
         }
+
+        public IActionResult EditTeacherSchedule(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        public IActionResult AllSchedule()
+        {
+            ViewBag.Cabinets = scheduleService.GetAllCabinets();
+            ViewBag.Classes = scheduleService.GetAllClasses();
+            ViewBag.Subjects = scheduleService.GetAllSubjects();
+            ViewBag.Teachers = scheduleService.GetAllTeachers();
+            return View();
+        }
+
+        public IActionResult TeacherSchedule(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
         
-        public IActionResult TeacherLessons(int id)
+        public IActionResult ClassSchedule(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+        
+        public IActionResult CabinetSchedule(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+        
+        public IActionResult SubjectSchedule(int id)
         {
             ViewBag.Id = id;
             return View();
@@ -30,15 +63,47 @@ namespace EveningSchool.Controllers
 
         public IActionResult GetLessonsByTeacherId(int id)
         {
-            var lessons = scheduleService.GetLessonsByTeacherId(id); 
+            var lessons = scheduleService.GetLessonsByTeacherId(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+        
+        public IActionResult GetLessonsByClassId(int id)
+        {
+            var lessons = scheduleService.GetLessonsByClassId(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+        
+        public IActionResult GetLessonsByCabinetId(int id)
+        {
+            var lessons = scheduleService.GetLessonsByCabinetId(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+        
+        public IActionResult GetLessonsBySubjectId(int id)
+        {
+            var lessons = scheduleService.GetLessonsBySubjectId(id);
             return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
         }
 
         [HttpPost]
-        public IActionResult AddTeacherLessons([FromBody] LessonViewModel model)
+        public IActionResult AddTeacherLessons(LessonViewModel models)
         {
-            var lesson = scheduleService.AddTeacherLessons(mapper.Map<Lesson>(model));
-            return Json(mapper.Map<LessonViewModel>(lesson));
+            var addedLesson = scheduleService.AddTeacherLesson(mapper.Map<Lesson>(models));
+            return Json(mapper.Map<LessonViewModel>(addedLesson));
+        }
+
+        [HttpPost]
+        public IActionResult EditTeacherLessons(LessonViewModel models)
+        {
+            var editedLesson = scheduleService.EditTeacherLesson(mapper.Map<Lesson>(models));
+            return Json(mapper.Map<LessonViewModel>(editedLesson));
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteTeacherLessons(LessonViewModel models)
+        {
+            scheduleService.DeleteLesson(mapper.Map<Lesson>(models));
+            return Ok();
         }
 
         public IActionResult GetAllClasses()
@@ -46,19 +111,19 @@ namespace EveningSchool.Controllers
             var classes = scheduleService.GetAllClasses();
             return Json(mapper.Map<IEnumerable<ClassViewModel>>(classes));
         }
-        
+
         public IActionResult GetAllSubjects()
         {
             var subjects = scheduleService.GetAllSubjects();
             return Json(mapper.Map<IEnumerable<SubjectViewModel>>(subjects));
         }
-        
+
         public IActionResult GetAllCabinets()
         {
             var cabinets = scheduleService.GetAllCabinets();
             return Json(mapper.Map<IEnumerable<CabinetViewModel>>(cabinets));
         }
-        
+
         public IActionResult GetAllTeachers()
         {
             var teachers = scheduleService.GetAllTeachers();

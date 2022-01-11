@@ -82,10 +82,15 @@ C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\TeacherLessons.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminPanel.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminTeacher.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminCabinet.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminClass.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminStudent.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminSubject.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\EditTeacherSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\AllSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\TeacherSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\CabinetSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\ClassSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\SubjectSchedule.cshtml.g.cs

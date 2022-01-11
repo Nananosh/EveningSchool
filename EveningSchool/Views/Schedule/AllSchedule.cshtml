@@ -1,0 +1,74 @@
+﻿<div class="content">
+    <div class="row justify-content-center">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-teachers-tab" data-toggle="tab" href="#nav-teachers" role="tab" aria-controls="nav-home" aria-selected="true">Учителя</a>
+                <a class="nav-item nav-link" id="nav-classes-tab" data-toggle="tab" href="#nav-classes" role="tab" aria-controls="nav-profile" aria-selected="false">Классы</a>
+                <a class="nav-item nav-link" id="nav-cabinets-tab" data-toggle="tab" href="#nav-cabinets" role="tab" aria-controls="nav-contact" aria-selected="false">Кабинеты</a>
+                <a class="nav-item nav-link" id="nav-subjects-tab" data-toggle="tab" href="#nav-subjects" role="tab" aria-controls="nav-contact" aria-selected="false">Предметы</a>
+            </div>
+        </nav>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active mt-5" id="nav-teachers" role="tabpanel" aria-labelledby="nav-teachers-tab">
+            <div class="row d-flex justify-content-center">
+                @foreach (var teacher in ViewBag.Teachers)
+                {
+                    <div class="col-lg-4 m-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@teacher.Surname @teacher.Name @teacher.Lastname</h5>
+                                <a asp-action="TeacherSchedule" asp-controller="Schedule" asp-route-id="@teacher.Id" class="btn btn-primary">Расписание</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="tab-pane fade mt-5" id="nav-classes" role="tabpanel" aria-labelledby="nav-classes-tab">
+            <div class="row d-flex justify-content-center">
+                @foreach (var cClass in ViewBag.Classes)
+                {
+                    <div class="col-lg-3 m-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@cClass.ClassName</h5>
+                                <a asp-action="ClassSchedule" asp-controller="Schedule" asp-route-id="@cClass.Id" class="btn btn-primary">Расписание</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="tab-pane fade mt-5" id="nav-cabinets" role="tabpanel" aria-labelledby="nav-cabinets-tab">
+            <div class="row d-flex justify-content-center">
+                @foreach (var cabinet in ViewBag.Cabinets)
+                {
+                    <div class="col-lg-3 m-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Кабинет №@cabinet.CabinetNumber</h5>
+                                <a asp-action="CabinetSchedule" asp-controller="Schedule" asp-route-id="@cabinet.Id"class="btn btn-primary">Расписание</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="tab-pane fade mt-5" id="nav-subjects" role="tabpanel" aria-labelledby="nav-subjects-tab">
+            <div class="row d-flex justify-content-center">
+                @foreach (var subject in ViewBag.Subjects)
+                {
+                    <div class="col-lg-3 m-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@subject.SubjectName</h5>
+                                <a asp-action="SubjectSchedule" asp-controller="Schedule" asp-route-id="@subject.Id" class="btn btn-primary">Расписание</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
