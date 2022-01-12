@@ -85,6 +85,7 @@ namespace EveningSchool.Business.Services
                 editLesson.CabinetId = lesson.CabinetId;
                 editLesson.SubjectId = lesson.SubjectId;
                 editLesson.ClassId = lesson.ClassId;
+                editLesson.LessonNumber = lesson.LessonNumber;
                 db.SaveChanges();
             }
 
