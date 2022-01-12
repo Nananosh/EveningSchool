@@ -9,6 +9,11 @@
 <script>
 $(function() {
     $("#scheduler").kendoScheduler({
+        toolbar: ["pdf"],
+        pdf: {
+            fileName: "Расписание.pdf",
+            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+        },
         footer: false,
         date: new Date("@DateTime.Now.ToString("yyyy-M-d 07:00")"),
         startTime: new Date("@DateTime.Now.ToString("yyyy-M-d 07:00")"),
@@ -141,3 +146,38 @@ $(function() {
             display: none;
         }
 </style>
+
+<style>
+        /*
+            Use the DejaVu Sans font for display and embedding in the PDF file.
+            The standard PDF fonts have no support for Unicode characters.
+        */
+        .k-scheduler {
+            font-family: "DejaVu Sans", "Arial", sans-serif;
+            font-size: .9em;
+        }
+
+        /* Hide toolbar, navigation and footer during export */
+        .k-pdf-export .k-scheduler-toolbar,
+        .k-pdf-export .k-scheduler-navigation .k-nav-today,
+        .k-pdf-export .k-scheduler-navigation .k-nav-prev,
+        .k-pdf-export .k-scheduler-navigation .k-nav-next,
+        .k-pdf-export .k-scheduler-footer
+        {
+            display: none;
+        }
+    </style>
+
+<script>
+        // Import DejaVu Sans font for embedding
+
+        // NOTE: Only required if the Kendo UI stylesheets are loaded
+        // from a different origin, e.g. cdn.kendostatic.com
+        kendo.pdf.defineFont({
+            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans.ttf",
+            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "WebComponentsIcons"      : "https://kendo.cdn.telerik.com/2017.1.223/styles/fonts/glyphs/WebComponentsIcons.ttf"
+        });
+</script>
