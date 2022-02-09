@@ -94,3 +94,6 @@ C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\CabinetSchedule.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\ClassSchedule.cshtml.g.cs
 C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Schedule\SubjectSchedule.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Admin\AdminArticle.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Article\Article.cshtml.g.cs
+C:\Users\nanan\RiderProjects\EveningSchool\EveningSchool\obj\Debug\net5.0\Razor\Views\Article\Index.cshtml.g.cs

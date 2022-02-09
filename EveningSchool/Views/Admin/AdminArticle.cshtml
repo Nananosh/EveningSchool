@@ -1,0 +1,85 @@
+﻿<body>
+<br/><br/><br/>
+<div id="example">
+    <div id="grid"></div>
+    <script>
+        $(document).ready(function() {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: "@Url.Action("GetAllArticles", "Article")",
+                        create: {
+                            url: "@Url.Action("AddArticle","Article")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        update: {
+                            url: "@Url.Action("EditArticle","Article")",
+                            dataType: "json",
+                            type: "POST"
+                        },
+                        destroy: {
+                            url: "@Url.Action("DeleteArticle","Article")",
+                            dataType: "json",
+                            type: "DELETE"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "Id",
+                            fields: {
+                                Id: { editable: false, from: "id", type: "number" },
+                                Title: { from: "title", validation: {required: true} },
+                                Image: { from: "image", validation: {required: true} },
+                                Text: { from: "text", validation: {required: true} },
+                                DatePublication: { from: "datePublication", type: "date", editable: false }
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                editable: "popup",
+                // filterable: true,
+                // sortable: true,
+                pageable: true,
+                toolbar: [
+                    "create",
+                ],
+                columns: [
+                    {
+                        field:"Id",
+                        filterable: false,
+                    },
+                    {
+                        field: "Title",
+                        title: "Название"
+                    },
+                    {
+                        field: "Image",
+                        title: "Картинка"
+                    },
+                    {
+                        field: "Text",
+                        title: "Текст статьи"
+                    },
+                    {
+                        field: "DatePublication",
+                        title: "Дата публикации",
+                        format: "{0:dd-MM-yyyy HH:MM}"
+                    },
+                    {
+                        command: "edit"
+                    },
+                    {
+                        command: "destroy"
+                    }
+                ]
+            });
+        });
+    </script>
+</div>
+</body>

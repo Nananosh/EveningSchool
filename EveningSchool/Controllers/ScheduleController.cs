@@ -111,6 +111,12 @@ namespace EveningSchool.Controllers
             var classes = scheduleService.GetAllClasses();
             return Json(mapper.Map<IEnumerable<ClassViewModel>>(classes));
         }
+        
+        public IActionResult GetAllClassesByParameter(int lessonNumber, DateTime dateStart)
+        {
+            var classes = scheduleService.GetAllClasses(lessonNumber, dateStart);
+            return Json(mapper.Map<IEnumerable<ClassViewModel>>(classes));
+        }
 
         public IActionResult GetAllSubjects()
         {
@@ -121,6 +127,12 @@ namespace EveningSchool.Controllers
         public IActionResult GetAllCabinets()
         {
             var cabinets = scheduleService.GetAllCabinets();
+            return Json(mapper.Map<IEnumerable<CabinetViewModel>>(cabinets));
+        }
+        
+        public IActionResult GetAllCabinetsByParameter(int lessonNumber, DateTime dateStart)
+        {
+            var cabinets = scheduleService.GetAllCabinets(lessonNumber, dateStart);
             return Json(mapper.Map<IEnumerable<CabinetViewModel>>(cabinets));
         }
 

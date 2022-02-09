@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EveningSchool.Models;
 using EveningSchool.ViewModels.Admin;
@@ -11,8 +12,10 @@ namespace EveningSchool.Business.Interfaces
     {
         public IEnumerable GetLessonsByTeacherId(int id);
         public List<Class> GetAllClasses();
+        public List<Class> GetAllClasses(int lessonNumber, DateTime dateStart);
         public List<Subject> GetAllSubjects();
         public List<Cabinet> GetAllCabinets();
+        public List<Cabinet> GetAllCabinets(int lessonNumber, DateTime dateStart);
         public List<Student> GetAllStudents();
         public List<Teacher> GetAllTeachers();
         public Lesson AddTeacherLesson(Lesson lesson);

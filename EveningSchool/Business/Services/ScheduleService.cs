@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EveningSchool.Business.Interfaces;
@@ -36,6 +37,12 @@ namespace EveningSchool.Business.Services
             var classes = db.Classes.ToList();
             return classes;
         }
+        
+        public List<Class> GetAllClasses(int lessonNumber, DateTime dateStart)
+        {
+            var classes = db.Classes.Where(x => !db.Lessons.Any(y => y.ClassId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date)).ToList();
+            return classes;
+        }
 
         public List<Subject> GetAllSubjects()
         {
@@ -46,6 +53,12 @@ namespace EveningSchool.Business.Services
         public List<Cabinet> GetAllCabinets()
         {
             var cabinets = db.Cabinets.OrderBy(x => x.CabinetNumber).ToList();
+            return cabinets;
+        }
+        
+        public List<Cabinet> GetAllCabinets(int lessonNumber, DateTime dateStart)
+        {
+            var cabinets = db.Cabinets.Where(x => !db.Lessons.Any(y => y.CabinetId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date)).OrderBy(x => x.CabinetNumber).ToList();
             return cabinets;
         }
 

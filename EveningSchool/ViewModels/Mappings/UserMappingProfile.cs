@@ -120,6 +120,7 @@ namespace EveningSchool.ViewModels.Mappings
                 .ForMember(dest => dest.Replacement,
                     opt => opt.MapFrom
                         (src => src.Replacement)).ReverseMap();
+            CreateMap<ArticleViewModel, Article>().ReverseMap();
         }
     }
 }

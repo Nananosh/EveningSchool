@@ -53,6 +53,11 @@ namespace EveningSchool.Controllers
             return View();
         }
 
+        public IActionResult AdminArticle()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddClass(ClassViewModel model)
         {

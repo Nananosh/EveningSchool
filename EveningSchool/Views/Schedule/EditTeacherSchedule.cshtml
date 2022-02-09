@@ -57,7 +57,7 @@ $(function() {
                 dataSource: {
                     transport: {
                         read: {
-                            url: "@Url.Action("GetAllClasses", "Schedule")",
+                            url: "@Url.Action("GetAllClassesByParameter","Schedule")" + `/?lessonNumber=${e.event.lessonNumber}&dateStart=${kendo.toString(e.event.start, "MM/dd/yyyy 7:00:00")}`,
                             dataType: "json",
                             cache: false
                         }
@@ -88,7 +88,7 @@ $(function() {
                 dataSource: {
                     transport: {
                         read: {
-                            url: "@Url.Action("GetAllCabinets", "Schedule")",
+                            url: "@Url.Action("GetAllCabinetsByParameter", "Schedule")" + `/?lessonNumber=${e.event.lessonNumber}&dateStart=${kendo.toString(e.event.start, "MM/dd/yyyy 7:00:00")}`,
                             dataType: "json",
                             cache: false
                         }

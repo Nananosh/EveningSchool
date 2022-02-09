@@ -34,6 +34,7 @@ namespace EveningSchool
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IScheduleService, ScheduleService>();
             services.AddScoped<ISeedDatabaseService, SeedDatabaseService>();
+            services.AddScoped<IArticleService, ArticleService>();
             
             services.AddAutoMapper(typeof(UserMappingProfile));
             services.AddControllersWithViews();
