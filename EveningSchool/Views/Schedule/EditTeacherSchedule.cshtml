@@ -2,7 +2,7 @@
     <div id="scheduler"></div>
 </div>
 <script id="event-template" type="text/x-kendo-template">
-    <div class="movie-template">
+    <div class="movie-template" style="background-color: #=colorVal#">
       <p>#: title #</p>
       </div>
     </script>
@@ -11,18 +11,22 @@
     <div data-container-for="recurrenceRule" class="k-edit-field">
         <div data-bind="value:recurrenceRule" name="recurrenceRule" data-role="recurrenceeditor"></div>
       </div>
-      <div class="k-edit-label"><label for="classId">Класс</label></div>
-          <div class="k-edit-field">
+    <div class="k-edit-label"><label for="classId">Класс</label></div>
+    <div class="k-edit-field">
               <input id="class" style="width: 60%;" data-bind="value:classId"/>
           </div>
-          <div class="k-edit-label"><label for="classId">Предмет</label></div>
-                    <div class="k-edit-field">
+    <div class="k-edit-label"><label for="classId">Предмет</label></div>
+    <div class="k-edit-field">
                         <input id="subject" style="width: 60%;" data-bind="value:subjectId"/>
                     </div>
-                    <div class="k-edit-label"><label for="classId">Кабинет</label></div>
-                                        <div class="k-edit-field">
-                                            <input id="cabinet" style="width: 60%;" data-bind="value:cabinetId"/>
-                                        </div>
+    <div class="k-edit-label"><label for="classId">Кабинет</label></div>
+    <div class="k-edit-field">
+    <input id="cabinet" style="width: 60%;" data-bind="value:cabinetId"/>
+    </div>
+    <div class="k-edit-label"><label for="replacement">Замена</label></div>
+    <div data-container-for="Replacement" class="k-edit-field">
+    <input data-bind="checked: replacement" data-type="number" type="checkbox" />
+    </div>
     </script>
 
 <script>
@@ -173,6 +177,9 @@ $(function() {
                         cabinetId: {
                             type: "number",
                             from: "cabinetId"
+                        },
+                        colorVal: {
+                            from: "colorVal",
                         }
                     }
                 }
@@ -233,4 +240,11 @@ $(function() {
     .k-current-time{
             display: none;
         }
+    .k-event{
+      		background: none;
+          	border: none;
+      	}
+   .kendo-scheduler .k-event .k-event-actions, .k-event .k-event-actions {
+   margin-right: 10px;
+   }    
 </style>

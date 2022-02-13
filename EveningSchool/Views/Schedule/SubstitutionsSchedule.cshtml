@@ -37,7 +37,7 @@ $(function() {
             batch: true,
             transport: {
                 read: {
-                    url: "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})",
+                    url: "@Url.Action("GetAllLessonsSubstitution", "Schedule")",
                     dataType: "json"
                 },
             },
@@ -72,7 +72,6 @@ $(function() {
                         teacherId: {
                             type: "number",
                             from: "teacherId",
-                            defaultValue: @ViewBag.Id
                         },
                         classId: {
                             type: "number",

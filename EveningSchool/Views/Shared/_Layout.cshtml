@@ -33,8 +33,17 @@
                         <a class="nav-link" asp-action="AllSchedule" asp-controller="Schedule">Расписание</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" asp-action="SubstitutionsSchedule" asp-controller="Schedule">Замены</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" asp-action="Index" asp-controller="Article">Новости</a>
                     </li>
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="AllStudent" asp-controller="Home">Все ученики</a>
+                        </li>
+                    }
                 </ul>
                 <ul class="navbar-nav flex-grow-1 justify-content-end">
                     @if (User.Identity.IsAuthenticated)

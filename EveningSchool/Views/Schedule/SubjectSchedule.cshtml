@@ -2,7 +2,7 @@
     <div id="scheduler"></div>
 </div>
 <script id="event-template" type="text/x-kendo-template">
-    <div class="movie-template">
+    <div class="movie-template" style="background-color: #=colorVal#">
       <p>#: title #</p>
       </div>
     </script>
@@ -85,6 +85,9 @@ $(function() {
                         cabinetId: {
                             type: "number",
                             from: "cabinetId"
+                        },
+                        colorVal: {
+                            from: "colorVal",
                         }
                     }
                 }
@@ -166,6 +169,13 @@ $(function() {
         {
             display: none;
         }
+        .k-event{
+              		background: none;
+                  	border: none;
+              	}
+           .kendo-scheduler .k-event .k-event-actions, .k-event .k-event-actions {
+           margin-right: 10px;
+           }    
     </style>
 
 <script>

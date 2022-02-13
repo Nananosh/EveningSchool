@@ -27,5 +27,20 @@ namespace EveningSchool.ViewModels.Schedule
                       каб №{Cabinet.CabinetNumber},
                       {Teacher.Surname} {Teacher.Name} {Teacher.Lastname}";
         }
+
+        public string ColorVal
+        {
+            get
+            {
+                if (Replacement)
+                {
+                    return $"#2FB807";
+                }
+                else
+                {
+                    return $"#0D9CEE";
+                }
+            }
+        }
     }
 }

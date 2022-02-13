@@ -18,6 +18,7 @@ namespace EveningSchool.Business.Interfaces
         public List<Cabinet> GetAllCabinets(int lessonNumber, DateTime dateStart);
         public List<Student> GetAllStudents();
         public List<Teacher> GetAllTeachers();
+        public List<Lesson> GetAllLessonsSubstitution();
         public Lesson AddTeacherLesson(Lesson lesson);
         public Lesson EditTeacherLesson(Lesson lesson);
         public void DeleteLesson(Lesson lesson);

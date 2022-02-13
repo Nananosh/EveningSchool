@@ -37,10 +37,11 @@ namespace EveningSchool.Business.Services
             var classes = db.Classes.ToList();
             return classes;
         }
-        
+
         public List<Class> GetAllClasses(int lessonNumber, DateTime dateStart)
         {
-            var classes = db.Classes.Where(x => !db.Lessons.Any(y => y.ClassId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date)).ToList();
+            var classes = db.Classes.Where(x => !db.Lessons.Any(y =>
+                y.ClassId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date)).ToList();
             return classes;
         }
 
@@ -55,10 +56,13 @@ namespace EveningSchool.Business.Services
             var cabinets = db.Cabinets.OrderBy(x => x.CabinetNumber).ToList();
             return cabinets;
         }
-        
+
         public List<Cabinet> GetAllCabinets(int lessonNumber, DateTime dateStart)
         {
-            var cabinets = db.Cabinets.Where(x => !db.Lessons.Any(y => y.CabinetId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date)).OrderBy(x => x.CabinetNumber).ToList();
+            var cabinets = db.Cabinets
+                .Where(x => !db.Lessons.Any(y =>
+                    y.CabinetId == x.Id && y.LessonNumber == lessonNumber && y.DateStart.Date == dateStart.Date))
+                .OrderBy(x => x.CabinetNumber).ToList();
             return cabinets;
         }
 
@@ -73,6 +77,15 @@ namespace EveningSchool.Business.Services
         {
             var teachers = db.Teachers.ToList();
             return teachers;
+        }
+
+        public List<Lesson> GetAllLessonsSubstitution()
+        {
+            var lessons = db.Lessons.Where(x => x.Replacement == true).Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher).ToList();
+            return lessons;
         }
 
 
@@ -99,6 +112,7 @@ namespace EveningSchool.Business.Services
                 editLesson.SubjectId = lesson.SubjectId;
                 editLesson.ClassId = lesson.ClassId;
                 editLesson.LessonNumber = lesson.LessonNumber;
+                editLesson.Replacement = lesson.Replacement;
                 db.SaveChanges();
             }
 

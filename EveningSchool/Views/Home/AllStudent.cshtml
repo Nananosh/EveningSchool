@@ -8,21 +8,6 @@
                 dataSource: {
                     transport: {
                         read: "@Url.Action("GetAllStudents", "Schedule")",
-                        update: {
-                            url: "@Url.Action("EditStudent","Admin")",
-                            dataType: "json",
-                            type: "POST"
-                        },
-                        create:{
-                            url: "@Url.Action("AddStudent","Admin")",
-                            dataType: "json",
-                            type: "POST"  
-                        },
-                        destroy: {
-                            url: "@Url.Action("DeleteStudent","Admin")",
-                            dataType: "json",
-                            type: "DELETE"
-                        }
                     },
                     group: {
                         field: "Class.className",
@@ -48,15 +33,7 @@
                     serverFiltering: false,
                     serverSorting: false
                 },
-                height: 550,
-                editable: "popup",
-                filterable: true,
-                sortable: true,
-                pageable: true,
-                toolbar: [
-                    {name: "create"},
-                    {name : "search"}
-                ],
+                toolbar: ["search"],
                 search: {
                     fields: [{
                             name: "Class.className",
@@ -84,6 +61,11 @@
                         },
                     ]
                 },
+                height: 550,
+                editable: "popup",
+                filterable: true,
+                sortable: true,
+                pageable: true,
                 columns: [
                     {
                         field:"Id",
@@ -104,7 +86,6 @@
                     {
                         field: "Class.className",
                         title: "Класс",
-                        editor: classEditor
                     },
                     {
                         field: "Telephone",
@@ -114,34 +95,9 @@
                         field: "Address",
                         title: "Адрес"
                     },
-                    {
-                        command: "edit", 
-                    },
-                    {
-                        command: "destroy"
-                    }
                 ]
             });
         });
-        
-        function classEditor(container, options) {
-            $('<input required name="ClassId">')
-                .appendTo(container)
-                .kendoDropDownList({
-                    dataTextField: "className",
-                    dataValueField: "id",
-                    height: 500,
-                    dataSource: {
-                        transport: {
-                            read: {
-                                url: "@Url.Action("GetAllClasses", "Schedule")",
-                                dataType: "json",
-                                cache: false
-                            }
-                        }
-                    }
-                });
-        }
     </script>
 </div>
 </body>
