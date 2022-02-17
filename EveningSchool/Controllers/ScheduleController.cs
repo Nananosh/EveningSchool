@@ -77,6 +77,12 @@ namespace EveningSchool.Controllers
             var lessons = scheduleService.GetLessonsByTeacherId(id);
             return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
         }
+        
+        public IActionResult GetLessonsByTeacherIdReplaced(int id)
+        {
+            var lessons = scheduleService.GetLessonsByTeacherIdReplaced(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
 
         public IActionResult GetLessonsByClassId(int id)
         {
@@ -95,7 +101,25 @@ namespace EveningSchool.Controllers
             var lessons = scheduleService.GetLessonsBySubjectId(id);
             return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
         }
+        
+        public IActionResult GetLessonsByClassIdReplaced(int id)
+        {
+            var lessons = scheduleService.GetLessonsByClassIdReplaced(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
 
+        public IActionResult GetLessonsByCabinetIdReplaced(int id)
+        {
+            var lessons = scheduleService.GetLessonsByCabinetIdReplaced(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+
+        public IActionResult GetLessonsBySubjectIdReplaced(int id)
+        {
+            var lessons = scheduleService.GetLessonsBySubjectIdReplaced(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+        
         [HttpPost]
         public IActionResult AddTeacherLessons(LessonViewModel models)
         {

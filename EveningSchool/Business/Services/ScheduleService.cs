@@ -27,7 +27,55 @@ namespace EveningSchool.Business.Services
                 .Include(x => x.Class)
                 .Include(x => x.Subject)
                 .Include(x => x.Teacher)
-                .Where(lesson => lesson.Teacher.Id == id);
+                .Where(lesson => lesson.Teacher.Id == id && lesson.Replacement == false);
+
+            return lessons;
+        }
+
+        public IEnumerable GetLessonsByClassIdReplaced(int id)
+        {
+            var lessons = db.Lessons
+                .Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher)
+                .Where(lesson => lesson.Class.Id == id && lesson.Replacement == true);
+
+            return lessons;
+        }
+
+        public IEnumerable GetLessonsByCabinetIdReplaced(int id)
+        {
+            var lessons = db.Lessons
+                .Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher)
+                .Where(lesson => lesson.Cabinet.Id == id && lesson.Replacement == true);
+
+            return lessons;
+        }
+
+        public IEnumerable GetLessonsBySubjectIdReplaced(int id)
+        {
+            var lessons = db.Lessons
+                .Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher)
+                .Where(lesson => lesson.Subject.Id == id && lesson.Replacement == true);
+
+            return lessons;
+        }
+
+        public IEnumerable GetLessonsByTeacherIdReplaced(int id)
+        {
+            var lessons = db.Lessons
+                .Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher)
+                .Where(lesson => lesson.Teacher.Id == id && lesson.Replacement == true);
 
             return lessons;
         }
@@ -139,7 +187,7 @@ namespace EveningSchool.Business.Services
                 .Include(x => x.Class)
                 .Include(x => x.Subject)
                 .Include(x => x.Teacher)
-                .Where(lesson => lesson.Class.Id == id);
+                .Where(lesson => lesson.Class.Id == id && lesson.Replacement == false);
 
             return lessons;
         }
@@ -151,7 +199,7 @@ namespace EveningSchool.Business.Services
                 .Include(x => x.Class)
                 .Include(x => x.Subject)
                 .Include(x => x.Teacher)
-                .Where(lesson => lesson.Cabinet.Id == id);
+                .Where(lesson => lesson.Cabinet.Id == id && lesson.Replacement == false);
 
             return lessons;
         }
@@ -163,7 +211,7 @@ namespace EveningSchool.Business.Services
                 .Include(x => x.Class)
                 .Include(x => x.Subject)
                 .Include(x => x.Teacher)
-                .Where(lesson => lesson.Subject.Id == id);
+                .Where(lesson => lesson.Subject.Id == id && lesson.Replacement == false);
 
             return lessons;
         }

@@ -1,4 +1,6 @@
-﻿<div id="example">
+﻿<intput type="button" class="btn" onclick="ReplaceURL()" style="background-color: #2FB807;">Показать замены</intput>
+<intput type="button" class="btn" onclick="NotReplaceURL()" style="background-color: #0D9CEE;">Скрыть замены</intput>
+<div id="example">
     <div id="scheduler"></div>
 </div>
 <script id="event-template" type="text/x-kendo-template">
@@ -7,6 +9,7 @@
       </div>
     </script>
 <script>
+var URL = "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})";
 $(function() {
     $("#scheduler").kendoScheduler({
         toolbar: ["pdf"],
@@ -37,7 +40,9 @@ $(function() {
             batch: true,
             transport: {
                 read: {
-                    url: "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})",
+                    url: function(options) {
+                                 return URL;
+                               },
                     dataType: "json"
                 },
             },
@@ -190,4 +195,16 @@ $(function() {
             "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
             "WebComponentsIcons"      : "https://kendo.cdn.telerik.com/2017.1.223/styles/fonts/glyphs/WebComponentsIcons.ttf"
         });
+</script>
+<script>
+function NotReplaceURL(){
+    URL = "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})"
+    var scheduler = $("#scheduler").data("kendoScheduler");
+    scheduler.dataSource.read();
+}
+function ReplaceURL(){
+    URL = "@Url.Action("GetLessonsByTeacherIdReplaced", "Schedule", new {id = ViewBag.Id})"
+    var scheduler = $("#scheduler").data("kendoScheduler");
+    scheduler.dataSource.read();
+}
 </script>

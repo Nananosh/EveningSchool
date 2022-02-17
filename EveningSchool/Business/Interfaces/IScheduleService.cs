@@ -10,7 +10,6 @@ namespace EveningSchool.Business.Interfaces
 {
     public interface IScheduleService
     {
-        public IEnumerable GetLessonsByTeacherId(int id);
         public List<Class> GetAllClasses();
         public List<Class> GetAllClasses(int lessonNumber, DateTime dateStart);
         public List<Subject> GetAllSubjects();
@@ -25,5 +24,10 @@ namespace EveningSchool.Business.Interfaces
         public IEnumerable GetLessonsByClassId(int id);
         public IEnumerable GetLessonsByCabinetId(int id);
         public IEnumerable GetLessonsBySubjectId(int id);
+        public IEnumerable GetLessonsByTeacherId(int id);
+        public IEnumerable GetLessonsByClassIdReplaced(int id);
+        public IEnumerable GetLessonsByCabinetIdReplaced(int id);
+        public IEnumerable GetLessonsBySubjectIdReplaced(int id);
+        public IEnumerable GetLessonsByTeacherIdReplaced(int id);
     }
 }
