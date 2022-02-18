@@ -18,5 +18,6 @@ namespace EveningSchool.Migrations
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<RegisterCode> RegisterCodes { get; set; }
     }
 }

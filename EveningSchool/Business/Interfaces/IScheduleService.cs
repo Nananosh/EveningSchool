@@ -29,5 +29,6 @@ namespace EveningSchool.Business.Interfaces
         public IEnumerable GetLessonsByCabinetIdReplaced(int id);
         public IEnumerable GetLessonsBySubjectIdReplaced(int id);
         public IEnumerable GetLessonsByTeacherIdReplaced(int id);
+        public IEnumerable GetAllTeacherLessonsByTeacherId(int id);
     }
 }

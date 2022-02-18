@@ -78,6 +78,12 @@ namespace EveningSchool.Controllers
             return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
         }
         
+        public IActionResult GetAllLessonsByTeacherId(int id)
+        {
+            var lessons = scheduleService.GetAllTeacherLessonsByTeacherId(id);
+            return Json(mapper.Map<IEnumerable<LessonViewModel>>(lessons));
+        }
+        
         public IActionResult GetLessonsByTeacherIdReplaced(int id)
         {
             var lessons = scheduleService.GetLessonsByTeacherIdReplaced(id);

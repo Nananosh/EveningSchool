@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EveningSchool.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211206205956_CreateDataBase")]
-    partial class CreateDataBase
+    [Migration("20220218101652_EditNull")]
+    partial class EditNull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,30 @@ namespace EveningSchool.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EveningSchool.Models.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DatePublication")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Articles");
+                });
 
             modelBuilder.Entity("EveningSchool.Models.Cabinet", b =>
                 {
@@ -64,8 +88,23 @@ namespace EveningSchool.Migrations
                     b.Property<int?>("ClassId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DateEnd")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Delete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LessonNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecurrenceRule")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Replacement")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("SubjectId")
                         .HasColumnType("int");
@@ -86,6 +125,21 @@ namespace EveningSchool.Migrations
                     b.ToTable("Lessons");
                 });
 
+            modelBuilder.Entity("EveningSchool.Models.RegisterCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RegisterCodes");
+                });
+
             modelBuilder.Entity("EveningSchool.Models.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -96,7 +150,7 @@ namespace EveningSchool.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClassId")
+                    b.Property<int>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<string>("Lastname")
@@ -108,17 +162,12 @@ namespace EveningSchool.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Telephone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClassId");
-
-                    b.HasIndex("TeacherId");
 
                     b.ToTable("Students");
                 });
@@ -144,6 +193,9 @@ namespace EveningSchool.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
@@ -397,15 +449,11 @@ namespace EveningSchool.Migrations
                 {
                     b.HasOne("EveningSchool.Models.Class", "Class")
                         .WithMany("Students")
-                        .HasForeignKey("ClassId");
-
-                    b.HasOne("EveningSchool.Models.Teacher", "Teacher")
-                        .WithMany("Students")
-                        .HasForeignKey("TeacherId");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Class");
-
-                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("EveningSchool.Models.Teacher", b =>
@@ -488,8 +536,6 @@ namespace EveningSchool.Migrations
             modelBuilder.Entity("EveningSchool.Models.Teacher", b =>
                 {
                     b.Navigation("Lessons");
-
-                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

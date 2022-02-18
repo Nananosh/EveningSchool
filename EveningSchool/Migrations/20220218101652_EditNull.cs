@@ -2,7 +2,7 @@
 
 namespace EveningSchool.Migrations
 {
-    public partial class EditLesson2 : Migration
+    public partial class EditNull : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,56 +22,37 @@ namespace EveningSchool.Migrations
                 name: "FK_Lessons_Teachers_TeacherId",
                 table: "Lessons");
 
-            migrationBuilder.DropColumn(
-                name: "TeacherId",
-                table: "Students");
-
             migrationBuilder.AlterColumn<int>(
                 name: "TeacherId",
                 table: "Lessons",
                 type: "int",
-                nullable: false,
-                defaultValue: 0,
+                nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+                oldType: "int");
 
             migrationBuilder.AlterColumn<int>(
                 name: "SubjectId",
                 table: "Lessons",
                 type: "int",
-                nullable: false,
-                defaultValue: 0,
+                nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+                oldType: "int");
 
             migrationBuilder.AlterColumn<int>(
                 name: "ClassId",
                 table: "Lessons",
                 type: "int",
-                nullable: false,
-                defaultValue: 0,
+                nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+                oldType: "int");
 
             migrationBuilder.AlterColumn<int>(
                 name: "CabinetId",
                 table: "Lessons",
                 type: "int",
-                nullable: false,
-                defaultValue: 0,
+                nullable: true,
                 oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "Replacement",
-                table: "Lessons",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
+                oldType: "int");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Cabinets_CabinetId",
@@ -79,7 +60,7 @@ namespace EveningSchool.Migrations
                 column: "CabinetId",
                 principalTable: "Cabinets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Classes_ClassId",
@@ -87,7 +68,7 @@ namespace EveningSchool.Migrations
                 column: "ClassId",
                 principalTable: "Classes",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Subjects_SubjectId",
@@ -95,7 +76,7 @@ namespace EveningSchool.Migrations
                 column: "SubjectId",
                 principalTable: "Subjects",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Teachers_TeacherId",
@@ -103,7 +84,7 @@ namespace EveningSchool.Migrations
                 column: "TeacherId",
                 principalTable: "Teachers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -124,48 +105,45 @@ namespace EveningSchool.Migrations
                 name: "FK_Lessons_Teachers_TeacherId",
                 table: "Lessons");
 
-            migrationBuilder.DropColumn(
-                name: "Replacement",
-                table: "Lessons");
-
-            migrationBuilder.AddColumn<int>(
-                name: "TeacherId",
-                table: "Students",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
             migrationBuilder.AlterColumn<int>(
                 name: "TeacherId",
                 table: "Lessons",
                 type: "int",
-                nullable: true,
+                nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "SubjectId",
                 table: "Lessons",
                 type: "int",
-                nullable: true,
+                nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "ClassId",
                 table: "Lessons",
                 type: "int",
-                nullable: true,
+                nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "CabinetId",
                 table: "Lessons",
                 type: "int",
-                nullable: true,
+                nullable: false,
+                defaultValue: 0,
                 oldClrType: typeof(int),
-                oldType: "int");
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Cabinets_CabinetId",
@@ -173,7 +151,7 @@ namespace EveningSchool.Migrations
                 column: "CabinetId",
                 principalTable: "Cabinets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Classes_ClassId",
@@ -181,7 +159,7 @@ namespace EveningSchool.Migrations
                 column: "ClassId",
                 principalTable: "Classes",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Subjects_SubjectId",
@@ -189,7 +167,7 @@ namespace EveningSchool.Migrations
                 column: "SubjectId",
                 principalTable: "Subjects",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Lessons_Teachers_TeacherId",
@@ -197,7 +175,7 @@ namespace EveningSchool.Migrations
                 column: "TeacherId",
                 principalTable: "Teachers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }

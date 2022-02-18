@@ -80,6 +80,18 @@ namespace EveningSchool.Business.Services
             return lessons;
         }
 
+        public IEnumerable GetAllTeacherLessonsByTeacherId(int id)
+        {
+            var lessons = db.Lessons
+                .Include(x => x.Cabinet)
+                .Include(x => x.Class)
+                .Include(x => x.Subject)
+                .Include(x => x.Teacher)
+                .Where(lesson => lesson.Teacher.Id == id);
+
+            return lessons;
+        }
+
         public List<Class> GetAllClasses()
         {
             var classes = db.Classes.ToList();
@@ -139,14 +151,40 @@ namespace EveningSchool.Business.Services
 
         public Lesson AddTeacherLesson(Lesson lesson)
         {
-            db.Lessons.Add(lesson);
-            db.SaveChanges();
-            var addedLesson = db.Lessons
-                .Include(x => x.Cabinet)
-                .Include(x => x.Class)
-                .Include(x => x.Subject)
-                .Include(x => x.Teacher)
-                .FirstOrDefault(l => l.Id == lesson.Id);
+            Lesson addedLesson;
+            Lesson tempLesson;
+            if (lesson.CabinetId == 0 && lesson.SubjectId == 0 && lesson.ClassId == 0)
+            {
+                tempLesson = new Lesson
+                {
+                    DateEnd = lesson.DateEnd,
+                    DateStart = lesson.DateStart,
+                    Replacement = lesson.Replacement,
+                    Delete = lesson.Delete,
+                    LessonNumber = lesson.LessonNumber,
+                    TeacherId = lesson.TeacherId
+                };
+                db.Lessons.Add(tempLesson);
+                db.SaveChanges();
+                addedLesson = db.Lessons
+                    .Include(x => x.Cabinet)
+                    .Include(x => x.Class)
+                    .Include(x => x.Subject)
+                    .Include(x => x.Teacher)
+                    .FirstOrDefault(l => l.Id == tempLesson.Id);
+            }
+            else
+            {
+                db.Lessons.Add(lesson);
+                db.SaveChanges();
+                addedLesson = db.Lessons
+                    .Include(x => x.Cabinet)
+                    .Include(x => x.Class)
+                    .Include(x => x.Subject)
+                    .Include(x => x.Teacher)
+                    .FirstOrDefault(l => l.Id == lesson.Id);
+            }
+            
             return addedLesson;
         }
 

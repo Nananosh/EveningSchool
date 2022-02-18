@@ -27,6 +27,10 @@
     <div data-container-for="Replacement" class="k-edit-field">
     <input data-bind="checked: replacement" data-type="number" type="checkbox" />
     </div>
+    <div class="k-edit-label"><label for="delete">Урок снят</label></div>
+        <div data-container-for="Delete" class="k-edit-field">
+        <input data-bind="checked: delete" data-type="number" type="checkbox" />
+        </div>
     </script>
 
 <script>
@@ -106,7 +110,7 @@ $(function() {
             batch: true,
             transport: {
                 read: {
-                    url: "@Url.Action("GetLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})",
+                    url: "@Url.Action("GetAllLessonsByTeacherId", "Schedule", new {id = ViewBag.Id})",
                     dataType: "json"
                 },
                 create: {
@@ -180,6 +184,9 @@ $(function() {
                         },
                         colorVal: {
                             from: "colorVal",
+                        },
+                        delete: {
+                            from: "delete"
                         }
                     }
                 }
