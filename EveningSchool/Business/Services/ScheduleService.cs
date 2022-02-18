@@ -199,6 +199,7 @@ namespace EveningSchool.Business.Services
                 editLesson.ClassId = lesson.ClassId;
                 editLesson.LessonNumber = lesson.LessonNumber;
                 editLesson.Replacement = lesson.Replacement;
+                editLesson.Delete = lesson.Delete;
                 db.SaveChanges();
             }
 

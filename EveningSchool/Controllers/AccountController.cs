@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using EveningSchool.Migrations;
 using EveningSchool.Models;
 using EveningSchool.ViewModels;
@@ -41,6 +42,12 @@ namespace EveningSchool.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!_database.RegisterCodes.Any(x => x.Code == model.RegisterCode))
+                {
+                    ModelState.AddModelError(string.Empty, "Неправильный код регистрации");
+                    return View(model);
+                }
+                
                 var user = new User
                 {
                     Email = model.Email, UserName = model.UserName,

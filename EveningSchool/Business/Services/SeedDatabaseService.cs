@@ -65,5 +65,15 @@ namespace EveningSchool.Business.Services
                 Console.WriteLine("Роль учителя создана");
             }
         }
+
+        public async Task CreateRegisterCode()
+        {
+            var registerCode = db.RegisterCodes.FirstOrDefault();
+            if (registerCode == null)
+            {
+                await db.RegisterCodes.AddAsync(new RegisterCode {Code = "12345"});
+                await db.SaveChangesAsync();
+            }
+        }
     }
 }

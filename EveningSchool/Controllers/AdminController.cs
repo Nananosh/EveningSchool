@@ -25,7 +25,8 @@ namespace EveningSchool.Controllers
 
         public IActionResult AdminPanel()
         {
-            return View();
+            var code = adminService.GetRegisterCode();
+            return View(code);
         }
 
         public IActionResult AdminTeacher()
@@ -150,6 +151,13 @@ namespace EveningSchool.Controllers
         public void DeleteTeacher(TeacherViewModel model)
         {
             adminService.DeleteTeacher(mapper.Map<Teacher>(model));
+        }
+
+        [HttpPost]
+        public IActionResult EditRegisterCode(RegisterCode model)
+        {
+            var registerCode = adminService.EditRegisterCode(model);
+            return RedirectToAction("AdminPanel","Admin");
         }
     }
 }

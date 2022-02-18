@@ -23,5 +23,7 @@ namespace EveningSchool.Business.Interfaces
         public void DeleteSubject(Subject subject);
         public void DeleteCabinet(Cabinet cabinet);
         public void DeleteTeacher(Teacher teacher);
+        public RegisterCode GetRegisterCode();
+        public RegisterCode EditRegisterCode(RegisterCode registerCode);
     }
 }

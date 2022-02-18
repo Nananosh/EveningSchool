@@ -33,6 +33,7 @@ namespace EveningSchool
             {
                 await seed.CreateStartRole();
                 await seed.CreateStartAdmin();
+                await seed.CreateRegisterCode();
             }
         }
     }

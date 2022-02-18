@@ -144,7 +144,7 @@ namespace EveningSchool.Controllers
         public IActionResult DeleteTeacherLessons(LessonViewModel models)
         {
             scheduleService.DeleteLesson(mapper.Map<Lesson>(models));
-            return Ok();
+            return Json(new Lesson());
         }
 
         public IActionResult GetAllClasses()

@@ -171,5 +171,19 @@ namespace EveningSchool.Business.Services
             if (deleteUser != null) db.Users.Remove(deleteUser);
             db.SaveChanges();
         }
+
+        public RegisterCode GetRegisterCode()
+        {
+            var registerCode = db.RegisterCodes.FirstOrDefault();
+            return registerCode;
+        }
+
+        public RegisterCode EditRegisterCode(RegisterCode registerCode)
+        {
+            var registerCodeEdit = db.RegisterCodes.FirstOrDefault();
+            if (registerCodeEdit != null) registerCodeEdit.Code = registerCode.Code;
+            db.SaveChanges();
+            return registerCodeEdit;
+        }
     }
 }

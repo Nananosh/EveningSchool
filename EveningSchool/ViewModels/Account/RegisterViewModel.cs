@@ -39,5 +39,9 @@ namespace EveningSchool.ViewModels.Account
         [Required]
         [Display(Name = "Телефон")]
         public string Telephone { get; set; }
+        
+        [Required]
+        [Display(Name = "Код регистрации")]
+        public string RegisterCode { get; set; }
     }
 }
